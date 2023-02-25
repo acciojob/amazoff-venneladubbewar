@@ -138,12 +138,27 @@ public class Repository {
     {
         List<String> a =new ArrayList<>();
         a=partnerOrders.get(partnerId);
-        if(a.size()==0) partnerIdDB.remove(partnerId);
+        partnerOrders.remove(partnerId);
+        partnerIdDB.remove(partnerId);
+
+           for(String s: a)
+           {
+               assignedOrders.remove(s);
+           }
+
+
     }
 
     public void removeOrder(String orderId)
     {
         orderDB.remove(orderId);
+        if(assignedOrders.containsKey(orderId))
+        {
+            String partnerId=assignedOrders.get(orderId);
+            assignedOrders.remove(orderId);
+            partnerOrders.get(partnerId).remove(orderId);
+            partnerIdDB.get(partnerId).setNumberOfOrders(partnerOrders.get(partnerId).size());
+        }
     }
 
 }
