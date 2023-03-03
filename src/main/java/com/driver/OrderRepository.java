@@ -17,7 +17,8 @@ public class OrderRepository {
 
     // partnerid, list of orderIds
     HashMap<String, List<String>> hm3 = new HashMap<String, List<String>>();
-
+//orderid, partnerid
+    HashMap<String,String > hm4 = new HashMap<>();
 
     public void addOrder(Order order) {
         ordersDB.put(order.getId(), order);
@@ -31,6 +32,7 @@ public class OrderRepository {
 
     public void addOrderPartnerPair(String orderId, String partnerId) {
 
+        hm4.put(orderId,partnerId);
         if(ordersDB.containsKey(orderId)&& partnersDB.containsKey(partnerId)){
               if(hm3.containsKey(partnerId)) {
                al=hm3.get(partnerId);
@@ -144,18 +146,14 @@ public class OrderRepository {
 
    public void deleteOrderById(String orderId) {
 
-        if(list2.contains(orderId)) {
-          //  String s = hm3.get(orderId).toString();
-            list2.remove(orderId);
-            hm3.remove(orderId);
-            ordersDB.remove(orderId);
-
-        }
-
-        else {
-            ordersDB.remove(orderId);
-            hm3.remove(orderId);
-        }
+       ordersDB.remove(orderId);
+       if(hm4.containsKey(orderId))
+       {
+           hm4.remove(orderId);
+           String partnerId=hm4.get(orderId);
+           hm3.get(partnerId).remove(orderId);
+           partnersDB.get(partnerId).setNumberOfOrders(hm3.get(partnerId).size());
+       }
    }
 
 }
