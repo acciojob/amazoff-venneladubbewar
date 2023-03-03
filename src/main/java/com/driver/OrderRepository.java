@@ -46,6 +46,7 @@ public class OrderRepository {
                   list2.add(orderId);
                   hm3.put(partnerId,al);
               }
+            partnersDB.get(partnerId).setNumberOfOrders(hm3.get(partnerId).size());
         }
     }
 
