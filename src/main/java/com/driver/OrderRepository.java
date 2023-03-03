@@ -154,6 +154,7 @@ public class OrderRepository {
 
         else {
             ordersDB.remove(orderId);
+            hm3.remove(orderId);
         }
    }
 
