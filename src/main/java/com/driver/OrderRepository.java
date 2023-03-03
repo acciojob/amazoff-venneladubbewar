@@ -12,7 +12,7 @@ public class OrderRepository {
     //partnerid,partner
     HashMap<String,DeliveryPartner> partnersDB = new HashMap<>();
 
-    List<String> al;
+//    List<String> al;
     List<String> list2 = new ArrayList<>();
 
     // partnerid, list of orderIds
@@ -32,6 +32,7 @@ public class OrderRepository {
 
     public void addOrderPartnerPair(String orderId, String partnerId) {
 
+        List<String> al;
         hm4.put(orderId,partnerId);
         if(ordersDB.containsKey(orderId)&& partnersDB.containsKey(partnerId)){
               if(hm3.containsKey(partnerId)) {
@@ -112,17 +113,27 @@ public class OrderRepository {
 
     int time = ans/60;
        String hr = Integer.toString(time);
-       String mins= "";
+       //String mins= "";
        if(hr.length()==1) {
-           hr= "0" +  hr;
+           hr = "0" + hr;
+       }
          ans = ans%60;
-          mins = Integer.toString(ans);
+          String mins = Integer.toString(ans);
          if(mins.length()==1) {
              mins = "0" + mins;
          }
 
-       }
+
        return hr + ":" + mins ;
+//
+//       int hours=ans/60;
+//       String Hours=Integer.toString(hours);
+//       if(Hours.length()==1) Hours= "0"+Hours;
+//       int min= ans%60;
+//       String Min = Integer.toString(min);
+//       if(Min.length()==1) Min= "0"+Min;
+//
+//       return Hours+":"+Min;
    }
 
    public void deletePartnerById(String partnerId) {
