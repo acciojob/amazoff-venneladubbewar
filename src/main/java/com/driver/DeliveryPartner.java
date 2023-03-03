@@ -6,8 +6,7 @@ public class DeliveryPartner {
     private int numberOfOrders;
 
     public DeliveryPartner(String id) {
-        this.id = id;
-        this.numberOfOrders = 0;
+     this.id=id;
     }
 
     public String getId() {
