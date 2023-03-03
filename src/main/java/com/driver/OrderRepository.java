@@ -92,14 +92,28 @@ public class OrderRepository {
         for(String x : a) {
             Order order = ordersDB.get(x);
             int t = order.getDeliveryTime();
-            if (t < time) {
+            if (t > time) {
                 count++;
             }
         }
             return count;
     }
+//    public int LateDeliveryR(int current, String partnerId)
+//    {
+//        List<String> a;
+//        int count=0;
+//        a=partnerOrders.get(partnerId);
+//        for(String temp : a)
+//        {
+//            Order o =orderDB.get(temp);
+//            int t= o.getDeliveryTime();
+//            if(t>current) count++;
+//        }
+//        return count;
+//    }
 
-   public String getLastDeliveryTimeByPartnerId(String partnerId) {
+
+    public String getLastDeliveryTimeByPartnerId(String partnerId) {
        List<String > al;
 
        al = hm3.get(partnerId);
